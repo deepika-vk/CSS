@@ -1,6 +1,6 @@
 import joblib
 from flask import Flask, render_template, request, redirect
-app = Flask(__name__)
+app = Flask(__name__, template_folder="", static_folder="")
 
 @app.route('/')
 def home():
@@ -27,7 +27,7 @@ def brain():
         model = joblib.load(open('crop_app','rb'))
         arr = [values]
         acc = model.predict(arr)
-        # print(acc)
+        print(acc, "acc")
         return render_template('prediction.html', prediction=str(acc))
     else:
         return "Sorry...  Error in entered values in the form Please check the values and fill it again"
@@ -35,7 +35,7 @@ def brain():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0")
 
 
 
