@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmEasy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://images.unsplash.com/photo-1560493676-04071c5f467b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #3ab43c;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .logo h1 {
+            color: #fff;
+            font-size: 24px;
+            margin-left: 10px;
+        }
+
+        .nav-links {
+            margin-right: 20px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 18px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ffcc00;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 120px auto 50px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-family: 'Arial Black', sans-serif;
+            text-align: center;
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        #recommendation {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="https://img.freepik.com/premium-vector/cute-farmer-character-vector-illustration_295036-15.jpg" alt="Logo">
+            <h1>FarmEasy</h1>
+        </div>
+        <div class="nav-links">
+            <a href="home.php">Home</a>
+            <a href="php/logout.php">Logout</a>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Crop Recommendation System</h1>
+        <div class="input-group">
+            <label for="nitrogen">Nitrogen:</label>
+            <input type="number" id="nitrogen" placeholder="Enter nitrogen value">
+        </div>
+        <div class="input-group">
+            <label for="phosphorus">Phosphorus:</label>
+            <input type="number" id="phosphorus" placeholder="Enter phosphorus value">
+        </div>
+        <div class="input-group">
+            <label for="potassium">Potassium:</label>
+            <input type="number" id="potassium" placeholder="Enter potassium value">
+        </div>
+        <div class="input-group">
+            <label for="temperature">Temperature:</label>
+            <input type="number" id="temperature" placeholder="Enter temperature value">
+        </div>
+        <div class="input-group">
+            <label for="humidity">Humidity:</label>
+            <input type="number" id="humidity" placeholder="Enter humidity value">
+        </div>
+        <div class="input-group">
+            <label for="ph">pH:</label>
+            <input type="number" id="ph" placeholder="Enter pH value">
+        </div>
+        <div class="input-group">
+            <label for="rainfall">Rainfall:</label>
+            <input type="number" id="rainfall" placeholder="Enter rainfall value">
+        </div>
+        <button class="btn" onclick="getRecommendation()">Get Recommendation</button>
+        <div id="recommendation"></div>
+    </div>
+
+    <script>
+        function getRecommendation() {
+            // Retrieve input values
+            var nitrogen = document.getElementById('nitrogen').value;
+            var phosphorus = document.getElementById('phosphorus').value;
+            var potassium = document.getElementById('potassium').value;
+            var temperature = document.getElementById('temperature').value;
+            var humidity = document.getElementById('humidity').value;
+            var ph = document.getElementById('ph').value;
+            var rainfall = document.getElementById('rainfall').value;
+
+            // Example recommendation logic (replace with your own)
+            var recommendation = "Based on the inputs, the recommended crop is Wheat.";
+
+            // Display recommendation
+            document.getElementById('recommendation').innerHTML = recommendation;
+        }
+    </script>
+</body>
+
+</html>
