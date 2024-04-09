@@ -1,6 +1,23 @@
 import joblib
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session
+from peewee import *
+
+db = SqliteDatabase("database.db")
+
+class User(Model):
+    class Meta:
+        database = db
+    username = CharField()
+    password = CharField()
+    email = CharField()
+    age = CharField()
+
+db.create_tables([User])
+
 app = Flask(__name__, template_folder="", static_folder="")
+
+
+app.secret_key = "jgfsdhjg"
 
 @app.route('/')
 def home():
@@ -31,6 +48,41 @@ def brain():
         return render_template('prediction.html', prediction=str(acc))
     else:
         return "Sorry...  Error in entered values in the form Please check the values and fill it again"
+
+@app.route("/register.html", methods=["GET", "POST"])
+def register():
+    message = None
+    if request.method == "POST":
+        user = User.select().where(User.email==request.form.get("email")).first()
+        if not user:
+            User.create(
+                username = request.form.get("username"),
+                password= request.form.get("password"),
+                email = request.form.get("email"),
+                age = request.form.get("age"),
+            )
+            message = "You are registerd"
+        else:
+            message = "Please chek your details"
+
+    return render_template("register.html", msg=message)
+
+@app.route("/login.html", methods=["POST", "GET"])
+def login():
+    msg = None
+    if request.method == "POST":
+        u = request.form.get("username")
+        p = request.form.get("password")
+        if User.select().where(
+            User.username == u
+        ).where(
+            User.password ==p
+        ):
+            session["login"] = True
+            msg = "You are loggined"
+        else:
+            msg = "Invalid username or password"
+    return render_template("login.html", msg=msg)
 
 
 
